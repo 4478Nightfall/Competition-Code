@@ -27,3 +27,15 @@ bin/
 *.tmp
 *.swp
 *.DS_Store
+
+build/
+bin/
+*.o
+*.d
+*.elf
+.vscode/
+.idea/
+*.log
+*.tmp
+*.swp
+*.DS_Store
