@@ -47,7 +47,7 @@ double slew(double val, double fwdVal){
   }
 }
 
-void drivePID(double fwdVal, double limit, bool goal, double timeout=2000) {
+void drivePID(double fwdVal, double limit, double timeout) {
     // PID constants
     double kP = 0.13; // Proportional constant
     double kD = 0.005; // Derivative constant
@@ -94,32 +94,29 @@ void drivePID(double fwdVal, double limit, bool goal, double timeout=2000) {
         // Calculate output based on PID formula
         output = (error * kP) + (derivative * kD); // PID output
 
-        output = slew(output,fwdVal);// slew rate is added to the output of motors for PID
+        output = slew(output, fwdVal); // slew rate is added to the output of motors for PID
 
-        // Limit output to maximum value (saturation)
-
+        // Limit output to the specified limit (saturation)
+        if (output > limit) output = limit;
+        if (output < -limit) output = -limit;
 
         // Spin motors with the calculated output
         left_motors.move(output);
         right_motors.move(output);
 
-                if ((currentTime - startTime) >= timeout) {
-            isComplete = false; // Exit the loop if target is reached
-            // Stop all motors if timeout is reached
-        left_motors.brake();
-        right_motors.brake();
-
+        // Timeout check
+        if ((currentTime - startTime) >= timeout) {
+            isComplete = false; // Exit the loop if timeout is reached
+            left_motors.brake();
+            right_motors.brake();
         }
-
 
         // Check if the error is within tolerance to stop the motors
-        if(fabs(error) <=5){
+        if (fabs(error) <= 5) {
             isComplete = false; // Exit the loop if target is reached
-            // Stop motors with hold mode (consider changing to coast if smoother stop needed)
-        left_motors.brake();
-        right_motors.brake();
+            left_motors.brake();
+            right_motors.brake();
         }
-        
 
         pros::delay(20); // Wait for a short duration before next iteration
     }

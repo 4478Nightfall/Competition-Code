@@ -12,7 +12,7 @@ extern void spinIntake(double);
 extern void clampOn();
 extern void clampOff();
 extern double slew(double, double);
-extern void drivePID(double, double, bool, double);
+void drivePID(double, double=100, double=2000);
 extern void turnPID(double);
 
 #endif

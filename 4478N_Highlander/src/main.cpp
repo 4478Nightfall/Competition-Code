@@ -30,8 +30,6 @@ void initialize() {
     pros::lcd::initialize(); // initialize brain screen
     chassis.calibrate(); // calibrate sensors
     clamp.set_value(LOW);
-    B4Bar.set_value(LOW);
-    Redirect.set_value(LOW);
     lcd::set_text(3, "Spin Wheel to select auton");
 
     // Stepwise reintroduction of the LCD background task
@@ -173,27 +171,12 @@ void opcontrol() {
 		}
 
 
-		if (controller.get_digital(E_CONTROLLER_DIGITAL_R2)){
-			Overclock.move_velocity(160);
-			}
-		else if(rotation.get_position()>=1000&&rotation.get_position()<=33000){
-			Overclock.move_velocity(-160);
-			}
-		else{
-			Overclock.brake();
-			}
+	
  
 if(controller.get_digital_new_press(E_CONTROLLER_DIGITAL_R1)){
 clamp.set_value(clamp.get_value() == LOW ? HIGH : LOW);
 }
 
-if(controller.get_digital_new_press(E_CONTROLLER_DIGITAL_B)){
-Redirect.set_value(Redirect.get_value() == LOW ? HIGH : LOW);
-}
-
-if(controller.get_digital_new_press(E_CONTROLLER_DIGITAL_LEFT)){
-B4Bar.set_value(B4Bar.get_value() == LOW ? HIGH : LOW);
-}
 
         // delay to save resources
         pros::delay(25);

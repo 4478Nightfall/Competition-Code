@@ -57,25 +57,19 @@ void log_data() {
     double intake_vel = intake.get_actual_velocity();
     double intake_deg = intake.get_position();
 
-    double overclock_temp = Overclock.get_temperature();
-    double overclock_vel = Overclock.get_actual_velocity();
-    double overclock_deg = Overclock.get_position();
-
     // Rotation sensors
-    double rotation_deg = rotation.get_position() / 100.0; // centidegrees to degrees
     double autonSelector_deg = autonSelector.get_position() / 100.0;
     double hTracker_deg = hTracker.get_position() / 100.0;
 
     // IMU
     double imu_heading = imu.get_heading();
 
-    std::fprintf(file, "%u,%.2f,%.2f,%.2f,%.2f,%.2f,%.2f,%.2f,%.2f,%.2f,%.2f,%.2f,%.2f,%.2f,%.2f,%.2f,%.2f\n",
+    std::fprintf(file, "%u,%.2f,%.2f,%.2f,%.2f,%.2f,%.2f,%.2f,%.2f,%.2f,%.2f,%.2f,%.2f,%.2f,%.2f,\n",
         timestamp,
         left_temp, left_vel, left_deg,
         right_temp, right_vel, right_deg,
         intake_temp, intake_vel, intake_deg,
-        overclock_temp, overclock_vel, overclock_deg,
-        rotation_deg, autonSelector_deg, hTracker_deg,
+        autonSelector_deg, hTracker_deg,
         imu_heading
     );
     std::fclose(file);

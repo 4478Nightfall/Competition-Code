@@ -20,9 +20,8 @@ void skills(){
 }
 
 void elimBallRush(int side){
-chassis.setPose(-54,(side*9),45);
-chassis.moveToPose(32,side*29,45,2000,{.minSpeed = 100, .earlyExitRange = 5},true);
-
+chassis.setPose(-53,(side*16),45);
+drivePID(50);
 }
 
 void odomTesting(){
