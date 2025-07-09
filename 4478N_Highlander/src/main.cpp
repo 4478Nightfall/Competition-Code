@@ -98,24 +98,20 @@ void autonomous() {
     switch (selection) {
         case 0:
             // Red - Left AWP Autonomous
-            AWPLeft();
             break;
         case 1:
             // Red - Right AWP Autonomous
-            AWPRight();
             break;
         case 2:
             // Red - Skills Autonomous
             sensorTesting();
             break;
         case 3:
-            // Blue - Left AWP Autonomous
-            goalRushRight();
+
             break;
         case 4:
             // Blue - Right AWP Autonomous
-            pros::lcd::clear_line(5);
-            pros::lcd::set_text(5, "Autonomous Started");
+
             skills();
             break;
         case 5:

@@ -1,5 +1,6 @@
 #include "main.h"
 #include "api.h"
+#include "pros/motors.hpp"
 #include "lemlib/api.hpp" // IWYU pragma: keep
 #include "lemlib/chassis/chassis.hpp"
 #include "devices.h"
@@ -14,8 +15,9 @@ using namespace lemlib;
 
 pros::Controller controller(pros::E_CONTROLLER_MASTER);
 pros::MotorGroup left_motors({-8, -19, -12}, pros::MotorGearset::blue); // left motors use 600 RPM cartridges
-pros::MotorGroup right_motors({5, 2, 10}, pros::MotorGearset::blue); // right motors use 200 RPM cartridges
+pros::MotorGroup right_motors({5, 2, 10}, pros::MotorGearset::blue); // right motors use 600 RPM cartridges
 pros::Motor intake{9, pros::MotorGearset::blue};
+pros::Motor mbl(-12, pros::MotorGearset::blue);
 pros::Rotation autonSelector(1);
 pros::Rotation hTracker(-19);
 pros::Imu imu(20);

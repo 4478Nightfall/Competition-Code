@@ -9,10 +9,7 @@ using namespace pros;
 
 
 extern void skills();
-extern void AWPLeft();
-extern void AWPRight();
-extern void goalRushLeft();
-extern void goalRushRight();
+extern void elimBallRush(int side);// 1 for left, -1 for right
 extern void odomTesting();
 extern void sensorTesting();
 

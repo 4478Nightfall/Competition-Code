@@ -15,25 +15,13 @@
 using namespace pros;
 using namespace lemlib; 
 
-ASSET(blueRight_txt);
 void skills(){
     chassis.moveToPoint(20, 15, 4000, {.forwards = true}, true);
 }
 
-
-void AWPLeft(){
-    chassis.moveToPoint(10, 15, 4000, {.forwards = true}, true);
-}
-
-void AWPRight(){
-    chassis.moveToPoint(100, 15, 4000, {.forwards = true}, true);
-}
-
-void goalRushLeft(){
-    chassis.moveToPoint(8, 50, 4000, {.forwards = true}, true);
-}
-void goalRushRight(){
-
+void elimBallRush(int side){
+chassis.setPose(-54,(side*9),45);
+chassis.moveToPose(32,side*29,45,2000,{.minSpeed = 100, .earlyExitRange = 5},true);
 
 }
 
@@ -44,6 +32,10 @@ void odomTesting(){
     chassis.moveToPoint(47.045,45.57,1000,{},false);
 
 }
+
+// Forward declaration for datalogging functions
+void start_datalogging();
+void stop_datalogging();
 
 void sensorTesting(){
     // Start datalogging
