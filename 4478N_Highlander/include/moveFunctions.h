@@ -8,7 +8,8 @@
 using namespace pros;
 
 
-extern void spinIntake(double);
+extern void spinIntake(double=1);//-1 for outake, 1 for intake
+extern void stopIntake();
 extern void clampOn();
 extern void clampOff();
 extern double slew(double, double);

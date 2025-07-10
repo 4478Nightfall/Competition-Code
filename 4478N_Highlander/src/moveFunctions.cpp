@@ -12,10 +12,13 @@
 using namespace pros;
 using namespace lemlib; 
 
-void spinIntake(double time){
+void spinIntake(double direction){
     intake.set_brake_mode(MOTOR_BRAKE_HOLD);
-    intake.move(127);
-    delay(time);
+    intake.move(direction*127);
+}
+
+void stopIntake(){
+    intake.set_brake_mode(MOTOR_BRAKE_HOLD);
     intake.brake();
 }
 void clampOn(){
