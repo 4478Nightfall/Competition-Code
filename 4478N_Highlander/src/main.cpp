@@ -155,20 +155,32 @@ void opcontrol() {
         // move the robot
         chassis.tank(leftY, rightY);
 
-        if(controller.get_digital(E_CONTROLLER_DIGITAL_L1)){
-			intake.move(-127);
+        if(controller.get_digital(E_CONTROLLER_DIGITAL_R1)){
+			intakeLoop.move(-127);
 		}
-			else if(controller.get_digital(E_CONTROLLER_DIGITAL_L2)){
-			intake.move(127);
+			else if(controller.get_digital(E_CONTROLLER_DIGITAL_R2)){
+			intakeLoop.move(127);
 		}
 			else{
 			intake.brake();
 		}
 
 
+                if(controller.get_digital(E_CONTROLLER_DIGITAL_L1)){
+			frontStage.move(-127);
+		}
+			else if(controller.get_digital(E_CONTROLLER_DIGITAL_L2)){
+			frontStage.move(127);
+		}
+			else{
+			intake.brake();
+		}
+
+
+
 	
  
-if(controller.get_digital_new_press(E_CONTROLLER_DIGITAL_R2)){
+if(controller.get_digital_new_press(E_CONTROLLER_DIGITAL_L1)){
 backGate.set_value(backGate.get_value() == LOW ? HIGH : LOW);
 }
 

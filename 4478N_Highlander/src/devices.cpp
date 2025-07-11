@@ -16,9 +16,9 @@ using namespace lemlib;
 pros::Controller controller(pros::E_CONTROLLER_MASTER);
 pros::MotorGroup left_motors({-8, -19, -12}, pros::MotorGearset::blue); // left motors use 600 RPM cartridges
 pros::MotorGroup right_motors({5, 2, 10}, pros::MotorGearset::blue); // right motors use 600 RPM cartridges
-pros::Motor intakeLoop{9, pros::MotorGearset::blue};
-pros::Motor frontStage{3, pros::MotorGearset::green}; // front stage motor
-pros::MotorGroup intake ({9, 3}); // intake motors use 600 RPM cartridges
+pros::Motor intakeLoop{12, pros::MotorGearset::blue};
+pros::Motor frontStage{-10, pros::MotorGearset::green}; // front stage motor
+pros::MotorGroup intake ({9, -3}); // intake motors use 600 RPM cartridges
 pros::Motor mbl(-12, pros::MotorGearset::blue);
 pros::Rotation autonSelector(1);
 pros::Rotation hTracker(-19);

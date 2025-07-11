@@ -1,7 +1,7 @@
 {
   "py/object": "pros.conductor.project.Project",
   "py/state": {
-    "project_name": "4478N_PROS",
+    "project_name": "4478N_Bot",
     "target": "v5",
     "templates": {
       "LemLib": {
@@ -299,7 +299,7 @@
     },
     "upload_options": {
       "description": "4478N Pros Test",
-      "slot": 3,
+      "slot": 1,
       "icon": "X"
     },
     "use_early_access": false
