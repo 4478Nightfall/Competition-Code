@@ -21,12 +21,14 @@ void stopIntake(){
     intake.set_brake_mode(MOTOR_BRAKE_HOLD);
     intake.brake();
 }
-void clampOn(){
-    clamp.set_value(HIGH);
+void handleBackGate(){
+backGate.set_value(backGate.get_value() == LOW ? HIGH : LOW);
 }
-void clampOff(){
-    clamp.set_value(LOW);
+
+void handleFrontGate(){
+frontGate.set_value(frontGate.get_value() == LOW ? HIGH : LOW);
 }
+
 
 double slewStep = 2;
 
@@ -52,8 +54,8 @@ double slew(double val, double fwdVal){
 
 void drivePID(double fwdVal, double limit, double timeout) {
     // PID constants
-    double kP = 0.13; // Proportional constant
-    double kD = 0.005; // Derivative constant
+    double kP = 0.2; // Proportional constant
+    double kD = 0.015; // Derivative constant
     // No integral component as disturbances were not observed in this game mode
 
     // Robot specifications
@@ -127,8 +129,8 @@ void drivePID(double fwdVal, double limit, double timeout) {
 
 void turnPID(double turnVal) {
     // PID constants
-    double kP = 0.46; // Proportional constant
-    double kD = 0.006; // Derivative constant
+    double kP = 0.3; // Proportional constant
+    double kD = 0.017; // Derivative constant
 
     // Initialization
     bool isComplete = true; // Flag to determine if the target is reached

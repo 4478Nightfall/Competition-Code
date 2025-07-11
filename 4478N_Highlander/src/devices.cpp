@@ -16,12 +16,15 @@ using namespace lemlib;
 pros::Controller controller(pros::E_CONTROLLER_MASTER);
 pros::MotorGroup left_motors({-8, -19, -12}, pros::MotorGearset::blue); // left motors use 600 RPM cartridges
 pros::MotorGroup right_motors({5, 2, 10}, pros::MotorGearset::blue); // right motors use 600 RPM cartridges
-pros::Motor intake{9, pros::MotorGearset::blue};
+pros::Motor intakeLoop{9, pros::MotorGearset::blue};
+pros::Motor frontStage{3, pros::MotorGearset::green}; // front stage motor
+pros::MotorGroup intake ({9, 3}); // intake motors use 600 RPM cartridges
 pros::Motor mbl(-12, pros::MotorGearset::blue);
 pros::Rotation autonSelector(1);
 pros::Rotation hTracker(-19);
 pros::Imu imu(20);
-adi::Port clamp ('A', E_ADI_DIGITAL_OUT);
+adi::Port backGate ('A', E_ADI_DIGITAL_OUT);
+adi::Port frontGate ('B', E_ADI_DIGITAL_OUT);
 lemlib::TrackingWheel horizontal_tracking_wheel(&hTracker,lemlib::Omniwheel::NEW_275,4,1);
 
 // drivetrain settings

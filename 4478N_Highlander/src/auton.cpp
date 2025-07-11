@@ -29,7 +29,6 @@ chassis.swingToHeading(90,DriveSide::RIGHT,2000);
 else if (side == -1){
 chassis.swingToHeading(90,DriveSide::LEFT,2000);
 }
-stopIntake();
 drivePID(-7);
 chassis.turnToPoint(-23,side*23,2000);
 drivePID(25);
@@ -38,10 +37,12 @@ drivePID(40);
 turnPID(270);
 drivePID(20);
 delay(2000);
-drivePID(-10);
-turnPID(90);
 chassis.moveToPoint(-25,side*47,2000);
+handleFrontGate();
+}
 
+void soloAWP(){
+    
 }
 
 void odomTesting(){

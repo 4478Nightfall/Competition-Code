@@ -14,12 +14,6 @@ using namespace pros;
 using namespace lemlib; 
 
 
-
-
-
-
-
-
 /**
  * Runs initialization code. This occurs as soon as the program is started.
  *
@@ -29,7 +23,8 @@ using namespace lemlib;
 void initialize() {
     pros::lcd::initialize(); // initialize brain screen
     chassis.calibrate(); // calibrate sensors
-    clamp.set_value(LOW);
+    backGate.set_value(LOW);
+    frontGate.set_value(LOW);
     lcd::set_text(3, "Spin Wheel to select auton");
 
     // Stepwise reintroduction of the LCD background task
@@ -173,8 +168,12 @@ void opcontrol() {
 
 	
  
-if(controller.get_digital_new_press(E_CONTROLLER_DIGITAL_R1)){
-clamp.set_value(clamp.get_value() == LOW ? HIGH : LOW);
+if(controller.get_digital_new_press(E_CONTROLLER_DIGITAL_R2)){
+backGate.set_value(backGate.get_value() == LOW ? HIGH : LOW);
+}
+
+if(controller.get_digital_new_press(E_CONTROLLER_DIGITAL_L2)){
+frontGate.set_value(frontGate.get_value() == LOW ? HIGH : LOW);
 }
 
 
