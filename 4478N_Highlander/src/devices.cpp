@@ -25,6 +25,7 @@ pros::Rotation hTracker(-19);
 pros::Imu imu(20);
 adi::Port backGate ('A', E_ADI_DIGITAL_OUT);
 adi::Port frontGate ('B', E_ADI_DIGITAL_OUT);
+adi::Port matchloadMech ('C', E_ADI_DIGITAL_OUT);
 lemlib::TrackingWheel horizontal_tracking_wheel(&hTracker,lemlib::Omniwheel::NEW_275,4,1);
 
 // drivetrain settings

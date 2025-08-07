@@ -27,6 +27,7 @@ extern Imu imu;
 extern pros::Motor mbl;
 extern adi::Port backGate;
 extern adi::Port frontGate;
+extern adi::Port matchloadMech;
 extern lemlib::TrackingWheel horizontal_tracking_wheel;
 extern lemlib::Drivetrain drivetrain;
 extern lemlib::OdomSensors sensors;

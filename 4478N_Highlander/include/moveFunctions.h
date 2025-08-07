@@ -16,5 +16,6 @@ extern double slewStep;
 extern double slew(double, double);
 extern void drivePID(double, double=100, double=2000);
 extern void turnPID(double);
+extern void handleMLMech();
 
 #endif

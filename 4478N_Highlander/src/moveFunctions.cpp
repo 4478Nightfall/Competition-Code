@@ -29,6 +29,9 @@ void handleFrontGate(){
 frontGate.set_value(frontGate.get_value() == LOW ? HIGH : LOW);
 }
 
+void handleMLMech(){
+matchloadMech.set_value(matchloadMech.get_value() == LOW ? HIGH : LOW);
+}
 
 double slewStep = 2;
 

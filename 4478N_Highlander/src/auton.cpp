@@ -20,16 +20,20 @@ void skills(){
 }
 
 void elimBallRush(int side){
-chassis.setPose(-53,(side*16),45);
+chassis.setPose(-47.5,(side*8),45);
 spinIntake(1);
 drivePID(50);
 if (side ==1){
-chassis.swingToHeading(90,DriveSide::RIGHT,2000);
+chassis.swingToHeading(30,DriveSide::RIGHT,2000);
 }
 else if (side == -1){
-chassis.swingToHeading(90,DriveSide::LEFT,2000);
+chassis.swingToHeading(30,DriveSide::LEFT,2000);
 }
+handleMLMech();
+delay(1000);
 drivePID(-7);
+handleMLMech();
+drivePID(7);
 chassis.turnToPoint(-23,side*23,2000);
 drivePID(25);
 turnPID(315);
