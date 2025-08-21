@@ -23,6 +23,7 @@ pros::Motor mbl(-12, pros::MotorGearset::blue);
 pros::Rotation autonSelector(1);
 pros::Rotation hTracker(-19);
 pros::Imu imu(20);
+pros::Optical colorSort(8);
 adi::Port backGate ('A', E_ADI_DIGITAL_OUT);
 adi::Port frontGate ('B', E_ADI_DIGITAL_OUT);
 adi::Port matchloadMech ('C', E_ADI_DIGITAL_OUT);

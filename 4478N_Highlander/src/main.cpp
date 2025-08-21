@@ -172,19 +172,25 @@ void opcontrol()
         }
         else
         {
-            intake.brake();
+            frontStage.brake();
         }
 
-        // Toggle back gate with L1
-        if (controller.get_digital_new_press(E_CONTROLLER_DIGITAL_L1))
+        // Toggle back gate with A
+        if (controller.get_digital_new_press(E_CONTROLLER_DIGITAL_A))
         {
             backGate.set_value(backGate.get_value() == LOW ? HIGH : LOW);
         }
 
-        // Toggle front gate with L2
-        if (controller.get_digital_new_press(E_CONTROLLER_DIGITAL_L2))
+        // Toggle front gate with Left
+        if (controller.get_digital_new_press(E_CONTROLLER_DIGITAL_LEFT))
         {
             frontGate.set_value(frontGate.get_value() == LOW ? HIGH : LOW);
+        }
+
+        // Toggle Match Load Mech gate with B
+        if (controller.get_digital_new_press(E_CONTROLLER_DIGITAL_B))
+        {
+            matchloadMech.set_value(matchloadMech.get_value() == LOW ? HIGH : LOW);
         }
 
         // delay to save resources

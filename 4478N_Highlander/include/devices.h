@@ -23,6 +23,7 @@ extern Motor frontStage; // front stage motor
 extern MotorGroup intake;
 extern Rotation autonSelector;
 extern Rotation hTracker;
+extern Optical colorSort;
 extern Imu imu;
 extern pros::Motor mbl;
 extern adi::Port backGate;
@@ -36,5 +37,3 @@ extern lemlib::ControllerSettings angular_controller;
 extern lemlib::ExpoDriveCurve throttleCurve;
 extern lemlib::ExpoDriveCurve steerCurve;
 extern lemlib::Chassis chassis;
-
-
