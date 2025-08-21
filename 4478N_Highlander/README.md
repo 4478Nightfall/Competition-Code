@@ -89,6 +89,174 @@ This project contains the complete source code for a VEX V5 robot designed for c
 - V5 Rotation Sensors
 - ADI Digital Outputs (for gates)
 
+## 🚀 Getting Started
+
+### Prerequisites
+
+#### 1. Install Required Software
+- **Git**: Download and install [Git](https://git-scm.com/downloads) for version control
+- **PROS CLI**: Install [PROS CLI](https://pros.cs.purdue.edu/v5/getfixedting-started/index.html) for VEX V5 development
+- **Code Editor**: Install [Visual Studio Code](https://code.visualstudio.com/) (recommended) or your preferred editor
+- **GitHub Desktop** (optional): For easier Git operations
+
+#### 2. Set Up Development Environment
+```bash
+# Verify Git installation
+git --version
+
+# Verify PROS CLI installation
+pros --version
+
+# Set up your Git identity (if first time)
+git config --global user.name "Your Name"
+git config --global user.email "your.email@example.com"
+```
+
+### Setting Up the Project
+
+#### 1. Clone the Repository
+```bash
+# Navigate to your desired development directory
+cd C:\Users\YourUsername\Documents\VEX_Projects
+
+# Clone the repository
+git clone https://github.com/your-username/4478N_Highlander.git
+
+# Navigate into the project directory
+cd 4478N_Highlander
+```
+
+#### 2. Verify Project Structure
+```bash
+# List all files to ensure everything downloaded correctly
+dir
+
+# You should see:
+# - src/ folder
+# - include/ folder
+# - Makefile
+# - project.pros
+# - README.md
+```
+
+### Building and Testing
+
+#### 1. Build the Project
+```bash
+# Clean any previous builds
+make clean
+
+# Build the project
+make
+
+# If successful, you'll see "Build completed successfully"
+```
+
+#### 2. Upload to Robot
+```bash
+# Upload to V5 Brain (slot 1)
+make upload
+
+# Or specify a different slot
+make upload SLOT=2
+```
+
+#### 3. Test Basic Functionality
+- Verify robot responds to controller inputs
+- Check LCD screen shows robot pose information
+- Test autonomous selection with rotation sensor
+
+### Development Workflow
+
+#### 1. **Start Development**
+```bash
+# Open project in VS Code
+code .
+
+# Or open specific files
+code src/main.cpp
+code include/devices.h
+```
+
+#### 2. **Make Changes**
+- Edit files in the `src/` directory
+- Modify header files in `include/` directory
+- Test changes incrementally
+
+#### 3. **Build and Test Cycle**
+```bash
+# After making changes, build again
+make
+
+# If build succeeds, upload to robot
+make upload
+
+# Test functionality on robot
+# Make adjustments as needed
+```
+
+#### 4. **Version Control Best Practices**
+```bash
+# Check what files have changed
+git status
+
+# Add your changes
+git add .
+
+# Commit with descriptive message
+git commit -m "Added new autonomous routine for left side AWP"
+
+# Push to remote repository (if working with team)
+git push origin main
+```
+
+### Common Development Tasks
+
+#### Adding New Autonomous Routines
+1. **Edit `include/auton.h`**: Add function declaration
+2. **Edit `src/auton.cpp`**: Implement the function
+3. **Edit `src/main.cpp`**: Add case to autonomous switch statement
+4. **Build and test**: Ensure new routine works correctly
+
+#### Modifying Device Configuration
+1. **Edit `include/devices.h`**: Update device declarations
+2. **Edit `src/devices.cpp`**: Modify initialization code
+3. **Update port numbers**: Ensure hardware matches software configuration
+
+#### Adding New Sensors
+1. **Include sensor header**: Add to `include/devices.h`
+2. **Initialize sensor**: Add to `src/devices.cpp`
+3. **Add to autonomous**: Integrate with existing routines
+
+### Troubleshooting Development Issues
+
+#### Build Errors
+```bash
+# Clean and rebuild
+make clean
+make
+
+# Check for syntax errors in specific files
+# Verify all includes are correct
+```
+
+#### Upload Issues
+- Ensure V5 Brain is connected via USB
+- Check that robot is powered on
+- Verify correct slot selection
+- Try different USB ports
+
+#### Git Issues
+```bash
+# If you get merge conflicts
+git status
+git add .
+git commit -m "Resolved merge conflicts"
+
+# If you need to reset to last working version
+git reset --hard HEAD~1
+```
+
 ### Development Workflow
 1. **Edit Source**: Modify files in `src/` directory
 2. **Build**: Run `make` to compile
