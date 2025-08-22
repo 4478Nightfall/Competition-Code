@@ -3,6 +3,7 @@
 #include "lemlib/api.hpp" // IWYU pragma: keep
 #include "lemlib/chassis/chassis.hpp"
 #include "devices.h"
+#include "colorSort.h"
 #include "auton.h"
 #include "sensor.h"
 #include "moveFunctions.h"
@@ -133,6 +134,7 @@ void opcontrol()
     // Main driver control loop
     while (true)
     {
+
         intake.set_brake_mode(MOTOR_BRAKE_HOLD);        // Hold intake when not moving
         right_motors.set_brake_mode(MOTOR_BRAKE_COAST); // Coast for smoother drive
         left_motors.set_brake_mode(MOTOR_BRAKE_COAST);
@@ -148,6 +150,7 @@ void opcontrol()
         chassis.tank(leftY, rightY);
 
         // Intake control
+        pros::Task colorSortTast{colorLoop}; // Start color sensor task
         if (controller.get_digital(E_CONTROLLER_DIGITAL_R1))
         {
             intakeLoop.move(-127);
