@@ -19,7 +19,14 @@ void skills(){
     chassis.moveToPoint(20, 15, 4000, {.forwards = true}, true);
 }
 
-void elimBallRush(int side){
+void elimBallRush(int side, int color){
+    if (color == 1){
+        currentTeam = BLUE;
+    }
+    else if (color == -1){
+        currentTeam = RED;
+    }
+
 chassis.setPose(-47.5,(side*8),45);
 spinIntake(1);
 drivePID(50);

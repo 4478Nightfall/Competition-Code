@@ -16,10 +16,19 @@ using namespace lemlib;
     bool ballDetected = false;
 
 void colorLoop(){
-    if (colorSort.get_hue() <250 && colorSort.get_hue() < 180 ){
+    if (currentTeam == BLUE){
+        if (colorSort.get_hue() <250 && colorSort.get_hue() > 180 ){
         // Blue detected
         pros::lcd::print(4, "Blue Detected");
         ballDetected = true;
+    }
+    }
+    else if (currentTeam == RED){
+     if (colorSort.get_hue() <250 && colorSort.get_hue() < 180 ){
+        // Blue detected
+        pros::lcd::print(4, "Blue Detected");
+        ballDetected = true;
+    }
     }
     if (ballDetected){
         count ++;
