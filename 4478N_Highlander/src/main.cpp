@@ -154,28 +154,18 @@ void opcontrol()
         if (controller.get_digital(E_CONTROLLER_DIGITAL_R1))
         {
             intakeLoop.move(-127);
+            frontStage.move(127);
         }
         else if (controller.get_digital(E_CONTROLLER_DIGITAL_R2))
         {
             intakeLoop.move(127);
+            frontStage.move(-127);
         }
         else
         {
             intake.brake();
-        }
-
-        // Front stage control
-        if (controller.get_digital(E_CONTROLLER_DIGITAL_L1))
-        {
-            frontStage.move(-127);
-        }
-        else if (controller.get_digital(E_CONTROLLER_DIGITAL_L2))
-        {
-            frontStage.move(127);
-        }
-        else
-        {
             frontStage.brake();
+
         }
 
         // Toggle back gate with A
