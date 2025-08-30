@@ -78,13 +78,10 @@ void logData()
     double intakeTemp = intake.get_temperature();
     double intakeVel = intake.get_actual_velocity();
     double intakeDeg = intake.get_position();
-
     // Rotation sensors (auton selector and horizontal tracker)
-
     double autonSelectorDeg = autonSelector.get_position() / 100.0; // Degrees
     double hTrackerDeg = hTracker.get_position() / 100.0;           // Degrees
-
-    // IMU heading (degrees)
+ // IMU heading (degrees)
     double imuHeading = imu.get_heading();
 
     std::fprintf(file, "%d,%f,%f,%f,%f,%f,%f,%f,%f,%f,%f,%f,%f\n", 
@@ -115,7 +112,6 @@ void dataloggingLoopFn(void *)
         pros::delay(100); // Log every 100ms
     }
 }
-
 /**
  * Start the datalogging background task if not already running.
  */
@@ -126,7 +122,6 @@ void startDatalogging()
     dataLoggingRunning = true;
     dataLoggingTask = new pros::Task(dataloggingLoopFn, nullptr, "Datalogging Task");
 }
-
 /**
  * Stop the datalogging background task and clean up resources.
  */
