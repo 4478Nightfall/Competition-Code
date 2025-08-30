@@ -1,7 +1,6 @@
 import pandas as pd
 import matplotlib.pyplot as plt
 import numpy as np
-from mpl_toolkits.mplot3d import Axes3D
 
 # Load the data
 filename = 'D:\datalog.csv'  # Change path if needed
@@ -117,14 +116,13 @@ ax.set_ylabel('Y Position (inches)')
 ax.set_zlabel('Time (ms)')
 ax.set_title('Robot Route (3D: Birdseye + Time)')
 fig.colorbar(p, ax=ax, label='Time (ms)')
-plt.show()
+plt.show(block=False)
 
 # Plot motor temperatures over time
 plt.figure(figsize=(10,6))
 plt.plot(df['timestamp'], df['left_temp'], label='Left Motors Temp')
 plt.plot(df['timestamp'], df['right_temp'], label='Right Motors Temp')
 plt.plot(df['timestamp'], df['intake_temp'], label='Intake Temp')
-plt.plot(df['timestamp'], df['overclock_temp'], label='Overclock Temp')
 plt.xlabel('Time (ms)')
 plt.ylabel('Temperature (°C)')
 plt.title('Motor Temperatures Over Time')
@@ -137,7 +135,6 @@ plt.figure(figsize=(10,6))
 plt.plot(df['timestamp'], df['left_vel'], label='Left Motors Vel')
 plt.plot(df['timestamp'], df['right_vel'], label='Right Motors Vel')
 plt.plot(df['timestamp'], df['intake_vel'], label='Intake Vel')
-plt.plot(df['timestamp'], df['overclock_vel'], label='Overclock Vel')
 plt.xlabel('Time (ms)')
 plt.ylabel('Velocity (RPM)')
 plt.title('Motor Velocities Over Time')
@@ -150,7 +147,6 @@ plt.figure(figsize=(10,6))
 plt.plot(df['timestamp'], df['left_deg'], label='Left Motors Deg')
 plt.plot(df['timestamp'], df['right_deg'], label='Right Motors Deg')
 plt.plot(df['timestamp'], df['intake_deg'], label='Intake Deg')
-plt.plot(df['timestamp'], df['overclock_deg'], label='Overclock Deg')
 plt.xlabel('Time (ms)')
 plt.ylabel('Position (deg)')
 plt.title('Motor Positions Over Time')
