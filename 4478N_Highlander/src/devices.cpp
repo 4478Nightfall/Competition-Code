@@ -20,12 +20,14 @@ pros::Motor frontStage{-10, pros::MotorGearset::green}; // front stage motor
 pros::MotorGroup intake({-10, 12});                     // intake motors use 600 RPM cartridges
 pros::Motor mbl(-12, pros::MotorGearset::blue);
 pros::Rotation autonSelector(1);
-pros::Rotation hTracker(-19);
+
 pros::Imu imu(20);
 pros::Optical colorSort(21);
 adi::Port backGate('A', E_ADI_DIGITAL_OUT);
 adi::Port frontGate('B', E_ADI_DIGITAL_OUT);
 adi::Port matchloadMech('C', E_ADI_DIGITAL_OUT);
+
+pros::Rotation hTracker(-19);
 lemlib::TrackingWheel horizontal_tracking_wheel(&hTracker, lemlib::Omniwheel::NEW_275, 4, 1);
 
 // drivetrain settings
