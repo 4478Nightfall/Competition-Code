@@ -1,6 +1,6 @@
 #pragma once
 
-extern void log_data();
-extern void start_datalogging();
-extern void stop_datalogging();
+extern void logData();
+extern void startDatalogging();
+extern void stopDatalogging();
 

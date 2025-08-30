@@ -16,17 +16,19 @@
 using namespace pros;
 using namespace lemlib;
 
-// Flag to indicate if datalogging is currently running
-volatile bool datalogging_running = false;
-// Pointer to the datalogging background task
-pros::Task *datalogging_task = nullptr;
+
 
 /**
  * Log current sensor and motor data to the SD card (datalog.csv).
  * Appends a row with timestamp, motor temps/velocities/positions, sensor values, etc.
  * Writes a header if the file is empty.
  */
-void log_data()
+ // Flag to indicate if datalogging is currently running
+volatile bool dataLoggingRunning = false;
+// Pointer to the datalogging background task
+pros::Task *dataLoggingTask = nullptr;
+
+void logData()
 {
     FILE *file = std::fopen("/usd/datalog.csv", "a"); // Open file for appending
     if (!file)
@@ -35,76 +37,81 @@ void log_data()
         return;
     }
     // Write header if file is empty (first run)
-    static bool header_written = false;
-    if (!header_written)
+    static bool headerWritten = false;
+    if (!headerWritten)
     {
         std::fseek(file, 0, SEEK_END);
         if (std::ftell(file) == 0)
         {
-            std::fprintf(file, "timestamp,left_temp,left_vel,left_deg,right_temp,right_vel,right_deg,intake_temp,intake_vel,intake_deg,rotation_deg,autonSelector_deg,hTracker_deg,imu_heading\n");
+            std::fprintf(file, "timestamp,leftTemp,leftVel,leftDeg,rightTemp,rightVel,rightDeg,intakeTemp,intakeVel,intakeDeg,autonSelectorDeg,hTrackerDeg,imuHeading\n");
         }
-        header_written = true;
+        headerWritten = true;
     }
     // Get time (ms since PROS start)
     uint32_t timestamp = pros::millis();
 
     // Get average values for left drive motors
-    auto left_temps = left_motors.get_temperature_all();
-    auto left_vels = left_motors.get_actual_velocity_all();
-    auto left_degs = left_motors.get_position_all();
-    double left_temp = 0, left_vel = 0, left_deg = 0;
-    if (!left_temps.empty())
-        left_temp = std::accumulate(left_temps.begin(), left_temps.end(), 0.0) / left_temps.size();
-    if (!left_vels.empty())
-        left_vel = std::accumulate(left_vels.begin(), left_vels.end(), 0.0) / left_vels.size();
-    if (!left_degs.empty())
-        left_deg = std::accumulate(left_degs.begin(), left_degs.end(), 0.0) / left_degs.size();
+    auto leftTemps = left_motors.get_temperature_all();
+    auto leftVels = left_motors.get_actual_velocity_all();
+    auto leftDegs = left_motors.get_position_all();
+    double leftTemp = 0, leftVel = 0, leftDeg = 0;
+    if (!leftTemps.empty())
+        leftTemp = std::accumulate(leftTemps.begin(), leftTemps.end(), 0.0) / leftTemps.size();
+    if (!leftVels.empty())
+        leftVel = std::accumulate(leftVels.begin(), leftVels.end(), 0.0) / leftVels.size();
+    if (!leftDegs.empty())
+        leftDeg = std::accumulate(leftDegs.begin(), leftDegs.end(), 0.0) / leftDegs.size();
 
     // Get average values for right drive motors
-    auto right_temps = right_motors.get_temperature_all();
-    auto right_vels = right_motors.get_actual_velocity_all();
-    auto right_degs = right_motors.get_position_all();
-    double right_temp = 0, right_vel = 0, right_deg = 0;
-    if (!right_temps.empty())
-        right_temp = std::accumulate(right_temps.begin(), right_temps.end(), 0.0) / right_temps.size();
-    if (!right_vels.empty())
-        right_vel = std::accumulate(right_vels.begin(), right_vels.end(), 0.0) / right_vels.size();
-    if (!right_degs.empty())
-        right_deg = std::accumulate(right_degs.begin(), right_degs.end(), 0.0) / right_degs.size();
+    auto rightTemps = right_motors.get_temperature_all();
+    auto rightVels = right_motors.get_actual_velocity_all();
+    auto rightDegs = right_motors.get_position_all();
+    double rightTemp = 0, rightVel = 0, rightDeg = 0;
+        if (!rightTemps.empty())
+        rightTemp = std::accumulate(rightTemps.begin(), rightTemps.end(), 0.0) / rightTemps.size();
+    if (!rightVels.empty())
+        rightVel = std::accumulate(rightVels.begin(), rightVels.end(), 0.0) / rightVels.size();
+    if (!rightDegs.empty())
+        rightDeg = std::accumulate(rightDegs.begin(), rightDegs.end(), 0.0) / rightDegs.size();
 
     // Intake motor values
-    double intake_temp = intake.get_temperature();
-    double intake_vel = intake.get_actual_velocity();
-    double intake_deg = intake.get_position();
+    double intakeTemp = intake.get_temperature();
+    double intakeVel = intake.get_actual_velocity();
+    double intakeDeg = intake.get_position();
 
     // Rotation sensors (auton selector and horizontal tracker)
 
-    double autonSelector_deg = autonSelector.get_position() / 100.0; // Degrees
-    double hTracker_deg = hTracker.get_position() / 100.0;           // Degrees
+    double autonSelectorDeg = autonSelector.get_position() / 100.0; // Degrees
+    double hTrackerDeg = hTracker.get_position() / 100.0;           // Degrees
 
     // IMU heading (degrees)
-    double imu_heading = imu.get_heading();
+    double imuHeading = imu.get_heading();
 
-    // Write all data to CSV file
-    std::fprintf(file, "%u,%.2f,%.2f,%.2f,%.2f,%.2f,%.2f,%.2f,%.2f,%.2f,%.2f,%.2f,%.2f,\n",
-                 timestamp,
-                 left_temp, left_vel, left_deg,
-                 right_temp, right_vel, right_deg,
-                 intake_temp, intake_vel, intake_deg,
-                 autonSelector_deg, hTracker_deg,
-                 imu_heading);
-    std::fclose(file); // Close file after writing
+    std::fprintf(file, "%d,%f,%f,%f,%f,%f,%f,%f,%f,%f,%f,%f,%f\n", 
+        timestamp,      // %d (integer)
+        leftTemp,      // %f (double)
+        leftVel,       // %f (double)
+        leftDeg,       // %f (double)
+        rightTemp,     // %f (double)
+        rightVel,      // %f (double)
+        rightDeg,      // %f (double)
+        intakeTemp,    // %f (double)
+        intakeVel,     // %f (double)
+        intakeDeg,     // %f (double)
+        autonSelectorDeg, // %f (double)
+        hTrackerDeg,   // %f (double)
+        imuHeading);   // %f (double)
 }
 
 /**
  * Background task function for datalogging.
  * Continuously logs data every 100ms while datalogging_running is true.
  */
-void datalogging_loop_fn(void *)
+void dataloggingLoopFn(void *)
 {
-    while (datalogging_running)
+    while (dataLoggingRunning)
     {
-        log_data();
+        logData();
         pros::delay(100); // Log every 100ms
     }
 }
@@ -112,25 +119,25 @@ void datalogging_loop_fn(void *)
 /**
  * Start the datalogging background task if not already running.
  */
-void start_datalogging()
+void startDatalogging()
 {
-    if (datalogging_running)
+    if (dataLoggingRunning)
         return;
-    datalogging_running = true;
-    datalogging_task = new pros::Task(datalogging_loop_fn, nullptr, "Datalogging Task");
+    dataLoggingRunning = true;
+    dataLoggingTask = new pros::Task(dataloggingLoopFn, nullptr, "Datalogging Task");
 }
 
 /**
  * Stop the datalogging background task and clean up resources.
  */
-void stop_datalogging()
+void stopDatalogging()
 {
-    datalogging_running = false;
-    if (datalogging_task)
+    dataLoggingRunning = false;
+    if (dataLoggingTask)
     {
-        datalogging_task->remove();
-        delete datalogging_task;
-        datalogging_task = nullptr;
+        dataLoggingTask->remove();
+        delete dataLoggingTask;
+        dataLoggingTask = nullptr;
     }
 }
 

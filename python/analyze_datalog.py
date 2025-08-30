@@ -75,48 +75,7 @@ plt.axis('equal')
 plt.legend()
 plt.show(block=False)
 
-# 3D Odometry with horizontal tracking wheel (column P, index 15)
-x, y, theta = 0.0, 0.0, 0.0
-positions_3d = [(x, y)]
-times = [df['timestamp'].iloc[0]]
 
-left_prev = df['left_deg'].iloc[0]
-right_prev = df['right_deg'].iloc[0]
-h_prev_deg = df.iloc[0, 15]  # Column P (0-based index 15)
-
-for i in range(1, len(df)):
-    left_curr = df['left_deg'].iloc[i]
-    right_curr = df['right_deg'].iloc[i]
-    h_curr_deg = df.iloc[i, 15]
-
-    d_left = rot_to_dist(left_curr - left_prev, WHEEL_DIAMETER)
-    d_right = rot_to_dist(right_curr - right_prev, WHEEL_DIAMETER)
-    d_h_rot = (h_curr_deg - h_prev_deg) / 360.0
-    d_h = rot_to_dist(d_h_rot, H_TRACK_DIAMETER)
-    left_prev, right_prev, h_prev_deg = left_curr, right_curr, h_curr_deg
-
-    d_center = (d_left + d_right) / 2.0
-    d_theta = (d_right - d_left) / TRACK_WIDTH
-
-    theta += d_theta
-    # Update X, Y using horizontal tracker for lateral movement
-    x += d_center * np.cos(theta) + d_h * np.sin(theta)
-    y += d_center * np.sin(theta) + d_h * np.cos(theta)
-    positions_3d.append((x, y))
-    times.append(df['timestamp'].iloc[i])
-
-positions_3d = np.array(positions_3d)
-times = np.array(times)
-
-fig = plt.figure(figsize=(10,8))
-ax = fig.add_subplot(111, projection='3d')
-p = ax.scatter(positions_3d[:,0], positions_3d[:,1], times, c=times, cmap='viridis', marker='o')
-ax.set_xlabel('X Position (inches)')
-ax.set_ylabel('Y Position (inches)')
-ax.set_zlabel('Time (ms)')
-ax.set_title('Robot Route (3D: Birdseye + Time)')
-fig.colorbar(p, ax=ax, label='Time (ms)')
-plt.show(block=False)
 
 # Plot motor temperatures over time
 plt.figure(figsize=(10,6))

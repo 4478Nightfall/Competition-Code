@@ -65,27 +65,14 @@ void odomTesting(){
 }
 
 // Forward declaration for datalogging functions
-void start_datalogging();
-void stop_datalogging();
-
 void sensorTesting(){
     // Start datalogging
-    start_datalogging();
-
+    startDatalogging();
  chassis.setPose(0, 0, 0);
-
     // Move forward 24 inches
     chassis.moveToPoint(0, 24, 5000);
-
-
     // Turn 90 degrees to the right
     chassis.turnToHeading(90, 2000);
-
-
-    // Move forward another 24 inches
-    chassis.moveToPoint(24, 24, 5000);
-
-
     // Stop datalogging
-    stop_datalogging();
+    stopDatalogging();
 }
