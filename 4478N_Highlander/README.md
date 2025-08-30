@@ -2,11 +2,11 @@
 
 A VEX V5 robotics competition robot built by Masuk 4478N Nightfall for the 2024-2025 VEX Robotics Competition season.
 
-## 🚀 Project Overview
+## Project Overview
 
 This project contains the complete source code for a VEX V5 robot designed for competitive robotics. The robot features advanced autonomous capabilities, precise movement control, and a modular design for easy maintenance and upgrades.
 
-## 🏗️ Robot Architecture
+## Robot Architecture
 
 ### Core Components
 - **Chassis System**: Tank drive with left/right motor groups
@@ -21,7 +21,7 @@ This project contains the complete source code for a VEX V5 robot designed for c
 - **Rotation Sensors**: Position tracking and autonomous selection
 - **V5 Controller**: Driver control interface
 
-## 🎮 Control Scheme
+## Control Scheme
 
 ### Drive Control
 - **Left Stick**: Left side tank drive
@@ -40,7 +40,7 @@ This project contains the complete source code for a VEX V5 robot designed for c
 - LCD screen displays current selection and robot pose information
 - Real-time position tracking with X, Y, and theta coordinates
 
-## 🛠️ Technical Features
+## Technical Features
 
 ### Motion Control
 - **LemLib Integration**: Advanced motion profiling and path following
@@ -53,7 +53,7 @@ This project contains the complete source code for a VEX V5 robot designed for c
 - **Task Management**: Background tasks for LCD updates and sensor monitoring
 - **Error Handling**: Robust error handling and recovery systems
 
-## 📁 Project Structure
+## Project Structure
 
 ```
 4478N_Highlander/
@@ -73,7 +73,7 @@ This project contains the complete source code for a VEX V5 robot designed for c
 └── Makefile               # Build configuration
 ```
 
-## 🔧 Dependencies
+## Dependencies
 
 ### Core Libraries
 - **PROS 4.1.1**: VEX V5 development framework
@@ -89,7 +89,7 @@ This project contains the complete source code for a VEX V5 robot designed for c
 - V5 Rotation Sensors
 - ADI Digital Outputs (for gates)
 
-## 🚀 Getting Started
+## Getting Started
 
 ### Prerequisites
 
@@ -263,14 +263,14 @@ git reset --hard HEAD~1
 3. **Test**: Upload to robot and test functionality
 4. **Iterate**: Make adjustments and repeat
 
-## 🎯 Competition Strategy
+## Competition Strategy
 
 ### Autonomous Phase
 - **AWP Focus**: Prioritize Autonomous Win Points for early game advantage
 - **Positioning**: Use precise odometry for consistent autonomous performance
 - **Adaptive Selection**: Multiple autonomous routines for different field positions
 
-## 🔍 Troubleshooting
+## Troubleshooting
 
 ### Common Issues
 - **Sensor Calibration**: Ensure IMU and tracking wheels are properly calibrated
@@ -282,11 +282,11 @@ git reset --hard HEAD~1
 - **Console Output**: Detailed logging for troubleshooting
 - **Sensor Testing**: Built-in sensor validation routines
 
-## 📄 License
+## License
 
 This project is developed for VEX Robotics Competition use. All code and designs are property of 4478N and Masuk Robotics.
 
-## 📞 Support
+## Support
 
 For questions or support regarding this robot code:
 - Check the [PROS Documentation](https://pros.cs.purdue.edu/)
@@ -295,4 +295,4 @@ For questions or support regarding this robot code:
 
 ---
 
-**Good luck in competition! 🏆**
+**Good luck in competition! **
