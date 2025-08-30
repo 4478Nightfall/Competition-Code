@@ -295,4 +295,4 @@ For questions or support regarding this robot code:
 
 ---
 
-**Good luck in competition! 🏆**
+**Good luck in competition! **
