@@ -12,23 +12,28 @@
 #include <thread>
 using namespace pros;
 using namespace lemlib;
+
     int count = 0; 
     bool ballDetected = false;
 
 void colorLoop(){
-    if (currentTeam == BLUE){
+    if (currentTeam == blue){
         if (colorSort.get_hue() <250 && colorSort.get_hue() > 180 ){
         // Blue detected
         pros::lcd::print(4, "Blue Detected");
         ballDetected = true;
     }
     }
-    else if (currentTeam == RED){
+    else if (currentTeam == red){
      if (colorSort.get_hue() <250 && colorSort.get_hue() < 180 ){
         // Blue detected
         pros::lcd::print(4, "Blue Detected");
         ballDetected = true;
     }
+    else if (currentTeam == None){
+        pros::lcd::print(4, "No Team Selected");
+    }
+    
     }
     if (ballDetected){
         count ++;

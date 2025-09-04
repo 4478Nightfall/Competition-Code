@@ -89,4 +89,4 @@ lemlib::Chassis chassis(drivetrain,         // drivetrain settings
                         &throttleCurve,
                         &steerCurve);
 
-TeamColor currentTeam = BLUE;
+TeamColor currentTeam = blue;

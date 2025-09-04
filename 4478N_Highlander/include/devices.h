@@ -37,5 +37,5 @@ extern lemlib::ControllerSettings angular_controller;
 extern lemlib::ExpoDriveCurve throttleCurve;
 extern lemlib::ExpoDriveCurve steerCurve;
 extern lemlib::Chassis chassis;
-enum TeamColor { RED, BLUE };
+enum TeamColor { red, blue, None };
 extern TeamColor currentTeam;
